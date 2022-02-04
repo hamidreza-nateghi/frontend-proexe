@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.js": "/frontend-proexe/static/js/main.ed328f70.js",
+    "static/js/787.7bf0df37.chunk.js": "/frontend-proexe/static/js/787.7bf0df37.chunk.js",
+    "index.html": "/frontend-proexe/index.html",
+    "main.ed328f70.js.map": "/frontend-proexe/static/js/main.ed328f70.js.map",
+    "787.7bf0df37.chunk.js.map": "/frontend-proexe/static/js/787.7bf0df37.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.ed328f70.js"
+  ]
+}
