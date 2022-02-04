@@ -4,7 +4,6 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles({
   root: {
     fontWeight: "bold",
-    marginTop: 16,
     marginBottom: 16,
   },
 });

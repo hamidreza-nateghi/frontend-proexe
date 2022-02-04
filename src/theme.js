@@ -36,6 +36,12 @@ const theme = {
         textTransform: "none",
       },
     },
+    MuiContainer: {
+      root: {
+        paddingTop: 16,
+        paddingBottom: 16,
+      },
+    },
     MuiTableCell: {
       root: {
         textAlign: "center",

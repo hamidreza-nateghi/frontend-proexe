@@ -21,7 +21,7 @@ function DeleteAlert({ id }) {
   };
 
   const handleDelete = () => {
-    dispatch(deleteUser({ id }));
+    dispatch(deleteUser(id));
   };
 
   return (

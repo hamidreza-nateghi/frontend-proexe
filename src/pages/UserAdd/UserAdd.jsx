@@ -1,29 +1,25 @@
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import Box from "@material-ui/core/Box";
-import Button from "../../components/Button";
 import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
+import { addUser } from "../../features/userSlice";
+import Button from "../../components/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
 import schema from "../../validationSchema";
-import { editUser, selectUserById } from "../../features/userSlice";
 
-function UserEdit({ history }) {
-  const { id } = useParams();
+function UserAdd({ history }) {
   const dispatch = useDispatch();
-  const user = useSelector((state) => selectUserById(state, id));
-
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ defaultValues: user, resolver: yupResolver(schema) });
+  } = useForm({ defaultValues: { name: "", username: "", email: "", city: "" }, resolver: yupResolver(schema) });
 
   const redirect = () => history.push("/");
 
   const onSubmit = (data) => {
-    dispatch(editUser({ id, ...data }));
+    dispatch(addUser(data));
     redirect();
   };
 
@@ -37,8 +33,7 @@ function UserEdit({ history }) {
         gridGap={8}
         onSubmit={handleSubmit(onSubmit)}
       >
-        <TextField label="id" {...register("id")} disabled fullWidth />
-        <TextField label="Name" {...register("name")} error={errors.name} helperText={errors.name?.message} fullWidth />
+        <TextField label="Name" {...register("name")} error={errors.name} helperText={errors.name?.message} fullWidth />{" "}
         <TextField
           label="Email"
           {...register("email")}
@@ -65,4 +60,4 @@ function UserEdit({ history }) {
   );
 }
 
-export default UserEdit;
+export default UserAdd;

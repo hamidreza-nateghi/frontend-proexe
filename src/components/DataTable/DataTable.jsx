@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Box from "@material-ui/core/Box";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -11,8 +11,36 @@ import Paper from "@material-ui/core/Paper";
 import ButtonLink from "../ButtonLink";
 import DeleteAlert from "../DeleteAlert";
 
+function renderData(data, order) {
+  if (data.length)
+    return stableSort(data, getComparator(order, "username")).map((row) => (
+      <TableRow key={row.id}>
+        <TableCell component="th" scope="row">
+          {row.id}
+        </TableCell>
+        <TableCell>{row.name}</TableCell>
+        <TableCell>{row.username}</TableCell>
+        <TableCell>{row.email}</TableCell>
+        <TableCell>{row.city}</TableCell>
+        <TableCell>
+          <ButtonLink color="warning" to={`/edit/${row.id}`}>
+            Edit
+          </ButtonLink>
+        </TableCell>
+        <TableCell>
+          <DeleteAlert id={row.id} />
+        </TableCell>
+      </TableRow>
+    ));
+
+  return (
+    <TableRow>
+      <TableCell colSpan={7}>No users to display</TableCell>
+    </TableRow>
+  );
+}
+
 function descendingComparator(a, b, orderBy) {
-  console.log(a, orderBy);
   const al = a[orderBy].toLowerCase();
   const bl = b[orderBy].toLowerCase();
 
@@ -41,8 +69,7 @@ function stableSort(array, comparator) {
   return stabilizedThis.map((el) => el[0]);
 }
 
-function DataTable({ data }) {
-  console.log("data in table", data);
+function DataTable({ data, isLoading }) {
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState("username");
 
@@ -79,29 +106,14 @@ function DataTable({ data }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {stableSort(data, getComparator(order, "username")).map((row) => (
-            <TableRow key={row.id}>
-              <TableCell component="th" scope="row">
-                {row.id}
-              </TableCell>
-              <TableCell>{row.name}</TableCell>
-              <TableCell>{row.username}</TableCell>
-              <TableCell>{row.email}</TableCell>
-              <TableCell>{row.city}</TableCell>
-              <TableCell>
-                <ButtonLink color="warning" to={`/edit/${row.id}`}>
-                  Edit
-                </ButtonLink>
-              </TableCell>
-              <TableCell>
-                <DeleteAlert id={row.id} />
-              </TableCell>
-            </TableRow>
-          ))}
-          {!data.length && (
+          {isLoading ? (
             <TableRow>
-              <TableCell colSpan={7}>No users to display</TableCell>
+              <TableCell colSpan={7}>
+                <CircularProgress />
+              </TableCell>
             </TableRow>
+          ) : (
+            renderData(data, order)
           )}
         </TableBody>
       </Table>
