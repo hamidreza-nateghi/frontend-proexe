@@ -68,7 +68,7 @@ export const userSlice = createSlice({
         if (state.data.length) {
           id = state.data[state.data.length - 1].id;
         }
-        state.data.push({ id: id + 1, ...action.payload });
+        state.data.push({ ...action.payload, id: id + 1 });
       })
       .addCase(addUser.rejected, (state, action) => {
         state.status = "failed";
