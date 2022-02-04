@@ -1,7 +1,7 @@
 {
   "name": "frontend-proexe",
   "version": "0.1.0",
-  "homepage": "http://hamidreza-nateghi.github.io/frontend-proexe",
+  "homepage": "https://hamidreza-nateghi.github.io/frontend-proexe",
   "dependencies": {
     "@hookform/resolvers": "^2.8.8",
     "@material-ui/core": "^4.12.3",
