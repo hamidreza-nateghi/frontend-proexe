@@ -1,4 +1,4 @@
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Routes from "./Routes";
@@ -8,9 +8,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <BrowserRouter>
+      <HashRouter>
         <Routes />
-      </BrowserRouter>
+      </HashRouter>
     </ThemeProvider>
   );
 }
