@@ -14,9 +14,9 @@ function Routes() {
           <Header />
           <Switch>
             <DashboardWrapper>
-              <Route exact path="/" component={Landing} />
-              <Route path="/add" component={UserAdd} />
-              <Route path="/edit/:id" component={UserEdit} />
+              <Route exact path={process.env.PUBLIC_URL + "/"} component={Landing} />
+              <Route path={process.env.PUBLIC_URL + "/add"} component={UserAdd} />
+              <Route path={process.env.PUBLIC_URL + "/edit/:id"} component={UserEdit} />
             </DashboardWrapper>
           </Switch>
         </Route>
